@@ -1,0 +1,355 @@
+/*----- Wrappers to align main-page parts -----*/
+
+.page-wrapper {    /*Wraps entire page in a flex-container */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.header-wrapper {   /*Wraps navbar and breadcrumb in a flex-container */
+    flex: 0 0 10vh; /*Syntax: flex: flexgrow flexshrink  height*/
+    border-bottom: solid 1px #606060;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: #e3f2fd;;
+
+}
+
+.main-wrapper {     /*Wraps main page content in a flex-container */
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: ghostwhite;
+    flex: 1 0 80vh; /* 80% of viewport height */
+    border-bottom: solid 1px #606060;
+}
+
+.footer-wrapper {       /*wraps footer in a flex-container to make it easier to make it stick to the bottom*/
+    display: flex;
+    background-color: lightgrey;
+    flex: 0 0 5vh;
+    border: solid 2px #606060;
+    margin-top: auto;
+}
+
+
+
+html, body {            /*Ensure html-page and body take up the whole viewport*/
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/*----- Header-sectionUpper Navbar and Breadcrumb -----*/
+
+.navbar .navbar-brand {
+    margin-left: 0;
+}
+
+.nav-link .active {
+    background-color: magenta;
+    color: white;
+}
+
+.navbar-logo {
+    height: 2.5em;
+    width: auto;
+    margin-right: 0.1em; /* Optional: Add spacing between logos */
+}
+
+.breadcrumb .breadcrumb-item:first-child {
+    padding-left: 5px;
+}
+
+.border-bottom {
+    border-bottom: 1px solid black ;
+}
+
+/*----- Main Section -----*/
+
+/*----- Side navigation bar -----*/
+.sidenav-wrapper {
+    background-color: ghostwhite;
+    width: auto;
+    min-width: 10vw;
+    flex-shrink: 0;
+    height: 100%;
+    overflow-x: auto;
+}
+
+.sidenav {
+    width: fit-content;
+    min-width: 10vw;
+    height: 100%;
+    padding-top: 1px;
+    background-color: ghostwhite;
+    overflow-y: auto; /* make scrollable */
+    left: 0;
+    position: fixed;
+    border-right: solid slategray 1px;
+}
+
+.side-nav-link.active {
+    background-color: darkgray;
+    color: white;
+
+}
+
+/* Navigation list */
+.sidenav ul {
+    list-style: none; /* Remove default list styles */
+    padding: 0;
+    margin: 0;
+}
+
+/* Navigation item */
+.sidenav li {
+    padding: 10px; /* Adjust padding as needed */
+    border-top: 1px solid black; /* Add black border at the top */
+    background-color: #f0f0f0;
+}
+
+/* Navigation link */
+.sidenav a {
+    text-decoration: none; /* Remove underline from links */
+    color: #333333; /* Default link color */
+    display: block; /* Make links block-level elements for full width */
+
+}
+
+/* Hover effect for navigation links */
+.sidenav a:hover {
+    background-color: darkgray; /* Lighter background color on hover */
+}
+
+/* Active navigation link */
+.sidenav a.active {
+    background-color: darkgray; /* Background color for active link */
+    color: white; /* Text color for active link */
+}
+
+
+/*----- Central content -----*/
+
+.center-wrapper{
+    flex: 1;    /* Allow the center wrapper to grow and take remaining space */
+    background-color: ghostwhite;
+
+}
+
+/*----- Right hand buffer  -----*/
+.right-hand-buffer{
+    min-width: 10vw;
+    flex: 0 0 auto;
+    background-color: ghostwhite;
+    height: 100vh;
+    border-left: solid slategray 1px;;
+}
+
+/*----- Footer -----*/
+.footer-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the footer stays above other content */
+    /* Add your additional styling here */
+}
+
+
+.footer-left{
+    display: flex;
+    align-items: center;
+
+}
+
+.footer-left .scroll-to-top-btn{
+}
+
+.footer-right{
+    text-align: right;
+
+}
+
+.footer-right span {
+    display: inline;
+    margin-right: 2%;
+    vertical-align: middle;
+}
+
+
+/*-----Glossary and navbar accordions -----*/
+.accordion {
+    width: 100%;
+    min-width: 10vw;
+}
+
+.accordion-header {
+    background-color: magenta; /* Set background color to white */
+    color: #000000; /* Set text color to black */
+}
+
+/* Override default active state styling for accordion-body */
+.accordion-body {
+    background-color: #f8f9fa; /* Set background color to a light gray */
+}
+
+.sub-heading {
+    width: 90rem;
+    padding-left: 0px;
+}
+
+/* Adjust the width of sub-accordion elements with IDs starting with "sub-accordion-" */
+[id^="sub-accordion-"] {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Custom styles for active list-items */
+.list-group-item[id^="side-nav-"].active {
+
+    background-color: darkgray;
+    color: black;
+
+}
+
+.close-accordions-btn{
+    padding-left: 10px;
+}
+
+
+/*Content tiles */
+
+
+.tile {
+    position: relative; /* Ensure relative positioning for absolute positioning inside */
+    width: 20vw;
+    height: 20vw;
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Ensure the image does not overflow the tile */
+    align-items: center; /* Center content vertically */
+}
+
+.tile:hover {
+    transform: scale(1.05); /* Scale the tile on hover for a zoom effect */
+    cursor: pointer;
+}
+
+.tile .card-img-top {
+    opacity: 0.9;
+    transition: opacity 0.3s ease-in-out; /* Add transition for width */
+    width: 100%;
+    height: 100%;
+}
+
+.tile:hover .card-img-top {
+    opacity: 0.3; /* Fade out the image on hover */
+
+}
+
+.smaller-tiles .tile { /*smaller tiles for index page */
+    width: 15vw;
+    height: 15vw;
+}
+
+
+.card-wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    min-width: 80vw;
+}
+
+.card-img-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease-in-out; /* Add transition for transform */
+}
+
+.card-body {
+    z-index: 1; /* Ensure text is above the image */
+    text-align: left; /* Center text */
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.4);} /* Semi-transparent background for better readability */
+
+.card-anchor {
+    text-decoration: none; /* Remove the underline */
+    color: inherit; /* Use the default text color */
+}
+
+.card-title{
+    border-bottom: solid black 1px;
+}
+
+.card-text{
+    background-color: rgba(165, 165, 165, 0.1);
+    border-radius: 0.3vw;
+}
+
+
+
+/*Button Styles */
+
+.scroll-to-top-btn {
+    height: 100%;
+    padding: 0;
+    margin-left: 2%;
+    display: none;
+}
+
+
+
+
+
+/*----- Testing Stuff -----*/
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100% ;
+}
+
+.close-accordions-btn {
+    position: relative;
+    left: 1vw;
+}
+
+/* Offset scroll to accommodate fixed header */
+:target {
+    scroll-margin-top: 10vh; /* Adjust this value to match the padding-top value */
+}
+
+
+.impressumLink{
+    text-decoration: none;
+    color: #333333;
+}
+
+.text-with-image {
+    float: left;
+    font-size: 18px; /* Adjust font size as needed */
+    line-height: 1.5; /* Adjust line height as needed */
+}
+.text-image {
+    float: right; /* Float the image to the right */
+    margin-left: 1vw; /* Adjust left margin to create space between text and image */
+    margin-bottom: 1vh; /* Adjust bottom margin to ensure text flows around image */
+}
+
+
+
+/*Following does not work, don't know why yet
+/* Remove focus outline for accordion items and children */
+.accordion-item:focus-within,
+.accordion-item .accordion-button:focus,
+.accordion-item .accordion-button:active,
+.accordion-item .accordion-collapse.show {
+    box-shadow: none !important;
+    /* Add any additional styles as needed */
+}
+
+
+
