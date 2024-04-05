@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FLIP Fluid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="styles/simulator.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles/breadcrumbs.css">
+
+
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <div class="header-wrapper">
+
+
+        <nav class="navbar navbar-expand-lg navbar-light"  style="background-color: cornflowerblue" >
+            <div class="container-fluid">
+                <div class="d-flex flex-row" >
+                    <a class="navbar-brand" href="#" style="height: 100%; width: 100%;">
+                        <img class="navbar-logo" src="/images/svg/flowLogo.svg" alt="">
+                    </a>
+
+
+                    <div class="collapse navbar-collapse" id="navbarNavLeft">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link " href="index.html">Home</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link active" href="resources.html">Resources</a>
+                            </li>
+
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Simulators
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="simulatorEuler.html">Eulerian</a>
+                                    <a class="dropdown-item" href="simulatorFlip.html">FLIP</a>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="glossary.html">Glossary</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-row justify-content-end">
+                    <div class="collapse navbar-collapse" id="navbarNavRight">
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+                                <button onclick="scrollToTop()" id="scrollToTopBtnHeader" class="scroll-to-top-btn btn btn-primary ms-auto" title="Go to top">Back up</button>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="https://github.com/StOe11169/Info1_Website">GitHub <img src="/images/svg/github.svg" alt="GitHub"> </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-disabled="true" style="color: gainsboro"> Change Language <img src="/images/svg/globe.svg" alt=""></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb breadcrumb-chevron p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="simSelect.html">Simulators</a> </li>
+                <li class="breadcrumb-item"><a>FLIP Simulator</a></li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="main-wrapper">
+
+        <!-- Sidebar Navigation-->
+
+        <div class="sidenav-wrapper">
+            
+        </div>
+
+        <!------Main Page Content -->
+        <div class="center-wrapper">
+
+
+
+            <div class="simulator-wrapper">
+
+                <div class="controlPanel btn-group" role="group">
+                    <input type = "checkbox" class="btn-check" id="showParticlesButton" checked  onclick = "scene.showParticles = !scene.showParticles">
+                    <label for="showParticlesButton" class="btn btn-primary checkbox-label">Show Particles </label>
+
+
+                    <input type = "checkbox" class="btn-check" id="showGridButton" onclick = "scene.showGrid = !scene.showGrid">
+                    <label for="showGridButton" class="btn btn btn-primary checkbox-label">Show Grid</label>
+
+
+
+                    <input type = "checkbox" class="btn-check" id="compensateDriftButton" checked onclick = "scene.compensateDrift = !scene.compensateDrift">
+                    <label for="compensateDriftButton" class="btn btn btn-primary checkbox-label">Compensate Drift </label>
+
+                    <input type = "checkbox" class="btn-check" id="separateParticlesButton" checked onclick = "scene.separateParticles = !scene.separateParticles">
+                    <label for="separateParticlesButton" class="btn btn btn-primary checkbox-label">Separate Particles</label>
+
+
+                    <div class="slider-div">
+                        <label class="form-label" for="picFLIPSlider">PIC:</label>
+                        <label class="form-label" for="picFLIPSlider" style="padding-left: 1vw" >FLIP:</label>
+                        <input type = "range" class="slider form-range" min = "0" max = "10" value = "9"  onchange="scene.flipRatio = 0.1 * this.value" id="picFLIPSlider">
+                    </div>
+
+
+                    <button class="button btn btn-primary" id="stepButtonFLIP" data-bs-toggle="button" aria-pressed="false" >Step</button>
+                    <button class="button btn btn-primary" id="startStopButtonFLIP" data-bs-toggle="button" aria-pressed="false" > Stop <img src="images/svg/pause-btn.svg"></button>
+                    <button class="button btn btn-primary" id="saveButtonFLIP" data-bs-toggle="button" aria-pressed="false"  disabled> Save Results</button>
+
+                </div>
+
+                <div>
+                    <canvas id="FLIPCanvas" class="simCanvas"></canvas>
+                    <script src="scripts/FluidSimFLIP.js"> </script>
+                    <script>
+                        setupScene();
+                        update();
+                    </script>
+                </div>
+
+
+
+            </div>
+
+
+        </div>
+
+        <!--Righthand spacer to align Page content -->
+        <div class="right-hand-buffer">
+
+        </div>
+
+    </div>
+
+    <div class="footer-wrapper">
+
+        <div class="col-6 footer-left" >
+            <button onclick="scrollToTop()" id="scrollToTopBtn" class="scroll-to-top-btn btn btn-primary" title="Go to top">Back up</button>
+            <p>This simulator is based upon the work by Mathias Müller/TenMinutePhysics, which you can look up <a href="https://matthias-research.github.io/pages/tenMinutePhysics/index.html" target="_blank">here!</a>
+            </p>
+        </div>
+
+        <div class="col-6 footer-right">
+            <span><a href="impressum.html">Impressum</a></span>
+            <span><a href="about.html"></a><img src="/images/svg/question-circle.svg" alt="?"> About </span>
+            <span><a href="https://github.com/StOe11169/Info1_Website"><img src="/images/svg/github.svg" alt="GitHub"> GitHub</a> </span>
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+<script src="scripts/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+
